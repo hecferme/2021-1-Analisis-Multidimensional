@@ -24,7 +24,8 @@ CREATE TABLE [dbo].[FactOrders](
 	[ShipName] [nvarchar](40) NULL,
 	[ShipCity] [nvarchar](15) NULL,
 	[ShipRegion] [nvarchar](15) NULL,
-	[ShipCountry] [nvarchar](15) NULL
+	[ShipCountry] [nvarchar](15) NULL,
+	[EstratoFlete] [varchar](50) NULL
 ) ON [PRIMARY]
 GO
 
