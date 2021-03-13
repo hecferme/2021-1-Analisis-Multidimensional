@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "MiPrimerCubo", "MiPrimerCubo\MiPrimerCubo.dwproj", "{4865860D-52B5-4950-ACE1-532256297EA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4865860D-52B5-4950-ACE1-532256297EA2}.Development|Default.ActiveCfg = Development
+		{4865860D-52B5-4950-ACE1-532256297EA2}.Development|Default.Build.0 = Development
+		{4865860D-52B5-4950-ACE1-532256297EA2}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D68DD0CD-D894-454D-9902-EA1909DF3EA6}
+	EndGlobalSection
+EndGlobal
