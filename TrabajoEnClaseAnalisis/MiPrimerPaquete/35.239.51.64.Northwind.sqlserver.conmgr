@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="35.239.51.64.Northwind.sqlserver"
+  DTS:DTSID="{5AA578AE-3280-482A-AFE6-1D81D5CC4024}"
+  DTS:CreationName="ADO">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=35.239.51.64;User ID=sqlserver;Initial Catalog=Northwind;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeg4CfacX/EiQL0jiqcEZ6AAAAAACAAAAAAAQZgAAAAEAACAAAADsmkeIGCkV8Kunng9Ek3kXjG468LAznGJgYIVP7LIEqAAAAAAOgAAAAAIAACAAAAByZUv/1yu4K9byFgBB4V46eRelu8xpr6PaRbv7YqgAKYAAAAD0Lk2M7iwNnHT1rsVk4isr5hK2TPXhzaQ1EaC8Zbti6BeEYMJI4e/hzeAFSmojD47ETP5ZBAyg8eCFBhkcxsN/9m/VnvFN4IGqOkVUMaSxFTa0fuPwjTohY4WQo3d8BRmqS6twRyo264HMfZOU5N5noeVHbhAEx1gFOEPVeD85BEAAAAD7M7WsvOEjKzYoSv6nHXi06Lwhzo04oVnxGleQpmW2N1k8xnsxZoXgxBzIC9MC2TPaxqJSJxq3XjUDrbe4Gfgt</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

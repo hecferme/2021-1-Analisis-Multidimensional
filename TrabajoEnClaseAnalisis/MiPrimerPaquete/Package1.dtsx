@@ -1,0 +1,225 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/20/2021 2:55:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEVELOPMENT"
+  DTS:CreatorName="DEVELOPMENT\sunsetsoftwareinc"
+  DTS:DTSID="{DB0067E9-F338-4316-82CB-181EBEC30AEB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{2E91FA63-2D59-41C6-901B-58B2CC417B6F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(local).NORTHWND 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0CCB809E-B937-4F6C-ABED-6649A3AC7A6F}"
+      DTS:ObjectName="(local).NORTHWND 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=NORTHWND;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[35.239.51.64.Northwind.sqlserver 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BA09057B-211B-4870-93CF-27DC7F49804D}"
+      DTS:ObjectName="35.239.51.64.Northwind.sqlserver 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=35.239.51.64;User ID=sqlserver;Initial Catalog=Northwind;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeg4CfacX/EiQL0jiqcEZ6AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAVppDqnpxToQl/tvkHh9T3unwWUWaEhaBYaSpKuRsEhAAAAAAOgAAAAAIAACAAAACUZyUDJ+5hRs1cjQKOrEbj6MnrFuex69PMHSzv9zdrOSAAAAA8ZYGlgvVlxUvF8FwzPVmndaCHyXK1lTzuHiV8jXl8N0AAAAC/5d7Tyw+eLUHOrsjYLEV6KqxV1/w/C1vdEO7ME0ewW8PhzJg+gqVluTvQfozeuwS+kLLyTf6i9dASu+yn8IOw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{72F65902-4BC8-4E4B-B5B8-D7C346DBE53C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CantidadRegistros">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{62ED783A-7FDE-4302-9BE7-873179B8B986}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PrecioMaximo">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{605BE3A0-E646-4BB1-B3EE-2A143CE89C16}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PrecioMaximoDeseado">
+      <DTS:VariableValue
+        DTS:DataType="5">59.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7AD87BC3-D019-4470-8B5C-2DF142905B30}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PrecioMinimo">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C163FF4-3860-49F0-83FF-E02854E82943}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PrecioMinimoDeseado">
+      <DTS:VariableValue
+        DTS:DataType="5">15.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D2775589-5D45-4214-94BD-E38FA9912CFF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PrecioPromedio">
+      <DTS:VariableValue
+        DTS:DataType="5">0.</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{357541A1-71D1-42D5-9E53-DBD41F92754B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BA09057B-211B-4870-93CF-27DC7F49804D}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="declare @a as money = ?&#xA;declare @b as money = ?&#xA;select &#xA;count (*) as CantidadRegistros&#xA;, max (p.unitprice) as PrecioMaximo&#xA;, avg (p.unitprice) as PrecioPromedio&#xA;, min (p.unitprice) as PrecioMinimo&#xA;from Products p&#xA;where p.UnitPrice between @a and @b"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PrecioPromedio"
+            SQLTask:DtsVariableName="User::PrecioPromedio" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CantidadRegistros"
+            SQLTask:DtsVariableName="User::CantidadRegistros" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PrecioMinimo"
+            SQLTask:DtsVariableName="User::PrecioMinimo" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PrecioMaximo"
+            SQLTask:DtsVariableName="User::PrecioMaximo" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::PrecioMaximoDeseado"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PrecioMinimoDeseado"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\pausa"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E6D0B892-12D7-40C2-855D-B77D0529B257}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="pausa"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{41E0195E-FF39-4A45-BEAE-D53F6E6744CE}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\pausa" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="340.178566359516,128.142854851484" />
+        <AnnotationLayout
+          Text="Este paquete se encarga de leer la cantidad de productos cuyo precio &#xD;&#xA;oscila entre un intervalo definido por las variables correspondientes&#xD;&#xA;, así como el precio máximo, mínimo y promedio de esos productos"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="400,72"
+          Id="417ac006-ecec-424c-9153-126860037889"
+          TopLeft="182.589282993493,38.0714278906584" />
+        <NodeLayout
+          Size="108,42.6666666666667"
+          Id="Package\pausa"
+          TopLeft="371.428565893854,243.285709935427" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="423.803566126685,170.809521518151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72.4761884172758"
+              Start="0,0"
+              End="0,64.9761884172758">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.9761884172758" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
