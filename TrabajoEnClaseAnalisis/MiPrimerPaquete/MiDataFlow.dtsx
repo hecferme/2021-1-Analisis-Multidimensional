@@ -1,0 +1,1975 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/10/2021 3:40:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEVELOPMENT"
+  DTS:CreatorName="DEVELOPMENT\whosthebosssoftwarei"
+  DTS:DTSID="{3D77A25C-EEA6-4179-BCEC-2F72875B541C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package3"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{0A65B5D3-33BF-47F3-8824-A78FFD530B09}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(local).NorthWnd]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1BB59BAB-5A43-4329-9002-AFDE4FBF3556}"
+      DTS:ObjectName="(local).NorthWnd">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=NorthWnd;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(local).PruebasETL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AF0FA8BD-978F-4C1A-8470-C1C2AF7D9BED}"
+      DTS:ObjectName="(local).PruebasETL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=PruebasETL;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{52203D48-6D57-4ECF-846D-023F1E7CBA96}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CantidadDescontinuados">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar la tabla de productos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BDBCBBE5-7DDC-47A4-A394-EAA4D0F21E69}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar la tabla de productos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Agregar el sufijo DESCONTINUADO"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      name="EstadoProducto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"DESCONTINUADO"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"DESCONTINUADO"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Agregar sufijo DESABASTECIDO"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="13"
+                      lineageId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      name="EstadoProducto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"DESABASTECIDO"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"DESABASTECIDO"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input].Columns[UnitsInStock]"
+                      cachedDataType="i2"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input].Columns[ReorderLevel]"
+                      cachedDataType="i2"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Descontinuado]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Producto Descontinuado"
+                  synchronousInputId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]} ==  TRUE </property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Discontinued ==  TRUE </property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Bien Abastecido]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Producto Bien Abastecido"
+                  synchronousInputId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]} &gt;= #{Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">UnitsInStock &gt;= ReorderLevel</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Desabastecido]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Producto Desabastecido"
+                  synchronousInputId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Lectura de la tabla de Productos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(local).NorthWnd]"
+                  connectionManagerRefId="Package.ConnectionManagers[(local).NorthWnd]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      length="40"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]"
+                      name="ProductNameOriginal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[QuantityPerUnit]"
+                      length="20"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitPriceSinAumento]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitPriceSinAumento]"
+                      name="UnitPriceSinAumento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]"
+                      name="UnitsInStock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]"
+                      name="ReorderLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[Discontinued]"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]"
+                      name="Discontinued"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitsInStock]"
+                      dataType="i2"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[UnitsOnOrder]"
+                      dataType="i2"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[ReorderLevel]"
+                      dataType="i2"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitsInStock]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ReorderLevel]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Pase el ProductName a mayúsculas"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Inputs[Derived Column Input].Columns[ProductNameOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductNameOriginal"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[UPPER](#{Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER(ProductNameOriginal)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[EstadoProducto]"
+                      name="EstadoProducto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">" "</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">" "</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::CantidadDescontinuados</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Cargar la tabla de productos\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\SQL Server Destination"
+              componentClassID="Microsoft.SQLServerDestination"
+              contactInfo="SQL Server Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+              description="SQL Server Destination"
+              name="SQL Server Destination"
+              version="5">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the database object to copy data into."
+                  expressionType="Notify"
+                  name="BulkInsertTableName">[MiTablaDeProductos]</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any constraints on the destination object are checked during the data copy operation. Corresponds to the bulk insert CHECK_CONSTRAINTS option."
+                  name="BulkInsertCheckConstraints">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the first row to copy. Corresponds to the bulk insert FIRSTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertFirstRow">-1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that any insert triggers defined on the destination object will execute during the data copy. Corresponds to the bulk insert FIRE_TRIGGERS option."
+                  name="BulkInsertFireTriggers">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Corresponds to the bulk insert KEEPIDENTITY option."
+                  name="BulkInsertKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null copied to the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="BulkInsertKeepNulls">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of the last row to copy. Corresponds to the bulk insert LASTROW option."
+                  expressionType="Notify"
+                  name="BulkInsertLastRow">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of syntax errors and compilation errors that can occur before the data copy operation is canceled. Each row that cannot be copied is ignored and counted as one error. Corresponds to the bulk insert MAXERRORS option."
+                  name="BulkInsertMaxErrors">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies how the data to be copied is sorted. Corresponds to the bulk insert ORDER option."
+                  expressionType="Notify"
+                  name="BulkInsertOrder"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies that a table-level lock is acquired for the duration of the data copy operation. Corresponds to the bulk insert TABLOCK option."
+                  name="BulkInsertTablock">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies in seconds the amount of time the SQL Destination adapter will wait before terminating if there is no data available for insertion.  A timeout value of 0 means the SQL Destination adapter will not time out."
+                  expressionType="Notify"
+                  name="Timeout">30</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion."
+                  name="MaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar la tabla de productos\SQL Server Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(local).PruebasETL]"
+                  connectionManagerRefId="Package.ConnectionManagers[(local).PruebasETL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input]"
+                  hasSideEffects="true"
+                  name="SQL Server Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ProductNameOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductNameOriginal"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductNameOriginal]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SupplierID]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[CategoryID]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="QuantityPerUnit"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[QuantityPerUnit]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[UnitPriceSinAumento]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceSinAumento"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitPriceSinAumento]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[UnitsInStock]"
+                      cachedDataType="i2"
+                      cachedName="UnitsInStock"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[UnitsOnOrder]"
+                      cachedDataType="i2"
+                      cachedName="UnitsOnOrder"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ReorderLevel]"
+                      cachedDataType="i2"
+                      cachedName="ReorderLevel"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Discontinued]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].Columns[EstadoProducto]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="EstadoProducto"
+                      externalMetadataColumnId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[EstadoProducto]"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[EstadoProducto]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductNameOriginal]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductNameOriginal" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[CategoryID]"
+                      dataType="i4"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitPriceSinAumento]"
+                      dataType="cy"
+                      name="UnitPriceSinAumento" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitsInStock]"
+                      dataType="i2"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[UnitsOnOrder]"
+                      dataType="i2"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ReorderLevel]"
+                      dataType="i2"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[Discontinued]"
+                      dataType="bool"
+                      name="Discontinued" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input].ExternalColumns[EstadoProducto]"
+                      dataType="wstr"
+                      length="20"
+                      name="EstadoProducto" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Cargar la tabla de productos\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[ProductNameOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductNameOriginal"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[UnitPriceSinAumento]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceSinAumento"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitPriceSinAumento]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[UnitsInStock]"
+                      cachedDataType="i2"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[UnitsOnOrder]"
+                      cachedDataType="i2"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[ReorderLevel]"
+                      cachedDataType="i2"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[ProductNameOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductNameOriginal"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[UnitPriceSinAumento]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceSinAumento"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitPriceSinAumento]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[UnitsInStock]"
+                      cachedDataType="i2"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[UnitsOnOrder]"
+                      cachedDataType="i2"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[ReorderLevel]"
+                      cachedDataType="i2"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2].Columns[EstadoProducto]"
+                      cachedDataType="wstr"
+                      cachedLength="13"
+                      cachedName="EstadoProducto"
+                      lineageId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Output].Columns[EstadoProducto]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[EstadoProducto]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[ProductNameOriginal]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductNameOriginal"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ProductNameOriginal]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="CategoryID"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[CategoryID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="QuantityPerUnit"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[QuantityPerUnit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[UnitPriceSinAumento]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceSinAumento"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitPriceSinAumento]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[UnitsInStock]"
+                      cachedDataType="i2"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsInStock]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[UnitsOnOrder]"
+                      cachedDataType="i2"
+                      cachedName="UnitsOnOrder"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[UnitsOnOrder]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[ReorderLevel]"
+                      cachedDataType="i2"
+                      cachedName="ReorderLevel"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[ReorderLevel]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[Discontinued]"
+                      cachedDataType="bool"
+                      cachedName="Discontinued"
+                      lineageId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output].Columns[Discontinued]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ProductName"
+                      lineageId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output].Columns[ProductName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3].Columns[EstadoProducto]"
+                      cachedDataType="wstr"
+                      cachedLength="13"
+                      cachedName="EstadoProducto"
+                      lineageId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Output].Columns[EstadoProducto]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[EstadoProducto]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductNameOriginal]"
+                      name="ProductNameOriginal" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]"
+                      dataType="cy"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitPriceSinAumento]"
+                      name="UnitPriceSinAumento" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      dataType="i2"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]"
+                      dataType="bool"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[EstadoProducto]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1].Columns[EstadoProducto]"
+                      name="EstadoProducto" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Derived Column Output]"
+              endId="Package\Cargar la tabla de productos\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Derived Column Output1]"
+              endId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Derived Column Output2]"
+              endId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[OLE DB Source Output]"
+              endId="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cargar la tabla de productos\Lectura de la tabla de Productos.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Producto Bien Abastecido]"
+              endId="Package\Cargar la tabla de productos\Row Count.Inputs[Row Count Input 1]"
+              name="Producto Bien Abastecido"
+              startId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Bien Abastecido]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Producto Desabastecido]"
+              endId="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO.Inputs[Derived Column Input]"
+              name="Producto Desabastecido"
+              startId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Desabastecido]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Producto Descontinuado]"
+              endId="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO.Inputs[Derived Column Input]"
+              name="Producto Descontinuado"
+              startId="Package\Cargar la tabla de productos\Conditional Split.Outputs[Producto Descontinuado]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Row Count Output 1]"
+              endId="Package\Cargar la tabla de productos\Union All.Inputs[Union All Input 1]"
+              name="Row Count Output 1"
+              startId="Package\Cargar la tabla de productos\Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Cargar la tabla de productos.Paths[Union All Output 1]"
+              endId="Package\Cargar la tabla de productos\SQL Server Destination.Inputs[SQL Server Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Cargar la tabla de productos\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\Cargar la tabla de productos"
+          TopLeft="274.374995911494,174.199996885061" />
+        <AnnotationLayout
+          Text="Este paquete carga una tabla con productos dentro otra con transformaciones"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="442.666666666667,40"
+          Id="c99958f2-f89c-48d8-8c8e-ad6ab0da9db7"
+          TopLeft="226.249996628612,66.9499988028407" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar la tabla de productos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="245.333333333334,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Agregar el sufijo DESCONTINUADO"
+          TopLeft="445.104161172005,490.004537610494" />
+        <NodeLayout
+          Size="245.333333333334,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Pase el ProductName a mayúsculas"
+          TopLeft="727.831429686313,244.048481402469" />
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Conditional Split"
+          TopLeft="763.61267915313,347.723479548616" />
+        <NodeLayout
+          Size="232,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Lectura de la tabla de Productos"
+          TopLeft="732.518929616464,167.13181611118" />
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Producto Descontinuado]"
+          TopLeft="804.61267915313,390.390146215283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-236.841851314459,99.6143913952109"
+              Start="0,0"
+              End="-236.841851314459,92.1143913952109">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3209247664172" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.3209247664172"
+                    Point2="0,34.3209247664172"
+                    Point3="-4,34.3209247664172" />
+                  <mssgle:LineSegment
+                    End="-232.841851314459,34.3209247664172" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-232.841851314459,34.3209247664172"
+                    Point2="-236.841851314459,34.3209247664172"
+                    Point3="-236.841851314459,38.3209247664172" />
+                  <mssgle:LineSegment
+                    End="-236.841851314459,92.1143913952109" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-172.552956907229,39.3209247664172,108.2640625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[OLE DB Source Output]"
+          TopLeft="849.508512984722,209.798482777846">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.2499986246228"
+              Start="0,0"
+              End="0,26.7499986246228">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7499986246228" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Derived Column Output]"
+          TopLeft="850.498096352979,286.715148069136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.88541719984903,61.0083314794806"
+              Start="0,0"
+              End="-8.88541719984903,53.5083314794806">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5041657397403" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5041657397403"
+                    Point2="0,30.5041657397403"
+                    Point3="-4,30.5041657397403" />
+                  <mssgle:LineSegment
+                    End="-4.88541719984903,30.5041657397403" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.88541719984903,30.5041657397403"
+                    Point2="-8.88541719984903,30.5041657397403"
+                    Point3="-8.88541719984903,34.5041657397403" />
+                  <mssgle:LineSegment
+                    End="-8.88541719984903,53.5083314794806" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="131.333333333334,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Row Count"
+          TopLeft="1044.61646284464,494.068934898516" />
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Producto Bien Abastecido]"
+          TopLeft="878.61267915313,390.390146215283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="231.670450358171,103.678788683233"
+              Start="0,0"
+              End="231.670450358171,96.1787886832334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7212633278367" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.7212633278367"
+                    Point2="0,35.7212633278367"
+                    Point3="4,35.7212633278367" />
+                  <mssgle:LineSegment
+                    End="227.670450358171,35.7212633278367" />
+                  <mssgle:CubicBezierSegment
+                    Point1="227.670450358171,35.7212633278367"
+                    Point2="231.670450358171,35.7212633278367"
+                    Point3="231.670450358171,39.7212633278367" />
+                  <mssgle:LineSegment
+                    End="231.670450358171,96.1787886832334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="59.3381939290857,40.7212633278367,112.9940625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="230.666666666667,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Agregar sufijo DESABASTECIDO"
+          TopLeft="714.545445035805,487.490146827422" />
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Producto Desabastecido]"
+          TopLeft="841.61267915313,390.390146215283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.7339007839922,97.1000006121396"
+              Start="0,0"
+              End="-11.7339007839922,89.6000006121396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5500003060698" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.5500003060698"
+                    Point2="0,48.5500003060698"
+                    Point3="-4,48.5500003060698" />
+                  <mssgle:LineSegment
+                    End="-7.73390078399223,48.5500003060698" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.73390078399223,48.5500003060698"
+                    Point2="-11.7339007839922,48.5500003060698"
+                    Point3="-11.7339007839922,52.5500003060698" />
+                  <mssgle:LineSegment
+                    End="-11.7339007839922,89.6000006121396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-59.1639816419961,53.5500003060698,106.5940625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\Union All"
+          TopLeft="762.159080689942,579.575751785437" />
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Row Count Output 1]"
+          TopLeft="1110.2831295113,536.735601565183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-259.12404882136,42.8401502202543"
+              Start="0,0"
+              End="-259.12404882136,35.3401502202543">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9459044447537" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.9459044447537"
+                    Point2="0,27.9459044447537"
+                    Point3="-4,27.9459044447537" />
+                  <mssgle:LineSegment
+                    End="-255.12404882136,27.9459044447537" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-255.12404882136,27.9459044447537"
+                    Point2="-259.12404882136,27.9459044447537"
+                    Point3="-259.12404882136,31.9459044447537" />
+                  <mssgle:LineSegment
+                    End="-259.12404882136,35.3401502202543" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Derived Column Output1]"
+          TopLeft="826.352262862874,530.156813494089">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.4189382913481"
+              Start="0,0"
+              End="0,41.9189382913481">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.9189382913481" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Derived Column Output2]"
+          TopLeft="567.770827838672,532.67120427716">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="226.721586184604,46.9045475082769"
+              Start="0,0"
+              End="226.721586184604,39.4045475082769">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5972317079082" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5972317079082"
+                    Point2="0,30.5972317079082"
+                    Point3="4,30.5972317079082" />
+                  <mssgle:LineSegment
+                    End="222.721586184604,30.5972317079082" />
+                  <mssgle:CubicBezierSegment
+                    Point1="222.721586184604,30.5972317079082"
+                    Point2="226.721586184604,30.5972317079082"
+                    Point3="226.721586184604,34.5972317079082" />
+                  <mssgle:LineSegment
+                    End="226.721586184604,39.4045475082769" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,42.6666666666667"
+          Id="Package\Cargar la tabla de productos\SQL Server Destination"
+          TopLeft="742.689385193428,676.939388001146" />
+        <EdgeLayout
+          Id="Package\Cargar la tabla de productos.Paths[Union All Output 1]"
+          TopLeft="822.825747356609,622.242418452104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.8636378368193,54.6969695490419"
+              Start="0,0"
+              End="13.8636378368193,47.1969695490419">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.348484774521" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.348484774521"
+                    Point2="0,27.348484774521"
+                    Point3="4,27.348484774521" />
+                  <mssgle:LineSegment
+                    End="9.86363783681929,27.348484774521" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.86363783681929,27.348484774521"
+                    Point2="13.8636378368193,27.348484774521"
+                    Point3="13.8636378368193,31.348484774521" />
+                  <mssgle:LineSegment
+                    End="13.8636378368193,47.1969695490419" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar la tabla de productos\Lectura de la tabla de Productos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar la tabla de productos\SQL Server Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
